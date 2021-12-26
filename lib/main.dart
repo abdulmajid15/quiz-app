@@ -8,10 +8,8 @@ void main() {
 }
 
 class Quizler extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -60,19 +58,18 @@ class _QuizPageState extends State<QuizPage> {
   void trackAnswer(bool userPickAnswer) {
     bool checkAnswer = quizbrain.getAnswer();
     setState(() {
-      //TODO: Step 4 - Use IF/ELSE to check if we've reached the end of the quiz. If so,
-      //On the next line, you can also use if (quizBrain.isFinished()) {}, it does the same thing.
       if (quizbrain.isFinished() == true) {
         Alert(
           // alertAnimation: ,
           context: context,
+
           title: 'Finished!',
-          desc: 'Corrent Answers: ${score}\nQuiz Ended.',
+          desc: 'Correct Answers: ${score} \nQuiz Ended.',
         ).show();
 
         quizbrain.reset();
 
-        scoreKeeper = [];
+        // scoreKeeper = [];
       } else {
         if (userPickAnswer == checkAnswer) {
           score++;
@@ -86,6 +83,7 @@ class _QuizPageState extends State<QuizPage> {
             color: Colors.red,
           ));
         }
+
         quizbrain.nextQuestion();
       }
     });
